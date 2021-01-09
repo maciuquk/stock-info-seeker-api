@@ -6,25 +6,44 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stock_info_seeker_api.Model;
+using stock_info_seeker_api.Services;
 
 namespace stock_info_seeker_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class WordsController : ControllerBase
     {
         private readonly ProjectContext _context;
+        private IUserService _userService;
 
-        public WordsController(ProjectContext context)
+        public WordsController(ProjectContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
+
+        [HttpPost("authenticate")]
+        //[HttpPost]
+        public IActionResult Authenticate(AuthenticateRequest model)
+        {
+            var response = _userService.Authenticate(model);
+
+            if (response == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(response);
+        }
+
+
         // GET: api/Words
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SeekFor>>> GetseekFor()
         {
             return await _context.seekFor.ToListAsync();
+
         }
 
         // GET: api/Words/5
