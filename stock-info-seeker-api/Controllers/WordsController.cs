@@ -43,10 +43,10 @@ namespace stock_info_seeker_api.Controllers
         public async Task<ActionResult<IEnumerable<SeekFor>>> GetseekFor()
         {
             return await _context.seekFor.ToListAsync();
-
         }
 
         // GET: api/Words/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<SeekFor>> GetSeekFor(int id)
         {
@@ -62,6 +62,7 @@ namespace stock_info_seeker_api.Controllers
 
         // PUT: api/Words/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSeekFor(int id, SeekFor seekFor)
         {
@@ -93,6 +94,7 @@ namespace stock_info_seeker_api.Controllers
 
         // POST: api/Words
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<SeekFor>> PostSeekFor(SeekFor seekFor)
         {
@@ -103,6 +105,7 @@ namespace stock_info_seeker_api.Controllers
         }
 
         // DELETE: api/Words/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSeekFor(int id)
         {

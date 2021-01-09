@@ -12,8 +12,8 @@ namespace stock_info_seeker_api.Model
         {
         }
 
-        public DbSet<SeekFor> SeekFor { get; set; }
-        public DbSet<Occurence> Occurence { get; set; }
+        public DbSet<SeekFor> seekFor { get; set; }
+        public DbSet<Occurence> occurence { get; set; }
 
     }
 }
