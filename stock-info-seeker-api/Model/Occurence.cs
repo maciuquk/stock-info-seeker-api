@@ -11,5 +11,6 @@ namespace stock_info_seeker_api.Model
         public int Id { get; set; }
         [Display(Name = "Zdarzenie")]
         public string Event { get; set; }
+        public string Url { get; set; }
     }
 }
